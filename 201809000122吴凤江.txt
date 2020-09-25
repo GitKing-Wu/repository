@@ -19,7 +19,7 @@ ENAME
 FORD                                                                            
 MILLER                                                                          
 
-ÒÑÑ¡Ôñ13ÐÐ¡£
+å·²é€‰æ‹©13è¡Œã€‚
 
 SQL> select ename, sal from emp order by sal;
 
@@ -43,7 +43,7 @@ SCOTT            3000
 FORD             3000                                                           
 KING             5000                                                           
 
-ÒÑÑ¡Ôñ14ÐÐ¡£
+å·²é€‰æ‹©14è¡Œã€‚
 
 SQL> select ename from emp where sal > (select avg(sal) from emp);
 
@@ -56,7 +56,7 @@ SCOTT
 KING                                                                            
 FORD                                                                            
 
-ÒÑÑ¡Ôñ6ÐÐ¡£
+å·²é€‰æ‹©6è¡Œã€‚
 
 SQL> select ename from emp where job=(select job from emp where ename='SCOTT');
 
@@ -82,17 +82,17 @@ BLAKE            2850
 TURNER           1500                                                           
 JAMES             950                                                           
 
-ÒÑÑ¡Ôñ6ÐÐ¡£
+å·²é€‰æ‹©6è¡Œã€‚
 
 SQL> select ename, sal from emp where sal in (select sal from emp where deptno=30) and deptno != 30 ;
 
-Î´Ñ¡¶¨ÐÐ
+æœªé€‰å®šè¡Œ
 
 SQL> select * from emp where deptno != (select deptno from emp where job='SALESMAN');
 select * from emp where deptno != (select deptno from emp where job='SALESMAN')
                                    *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-01427: µ¥ÐÐ×Ó²éÑ¯·µ»Ø¶à¸öÐÐ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-01427: å•è¡Œå­æŸ¥è¯¢è¿”å›žå¤šä¸ªè¡Œ 
 
 
 SQL> select * from emp where deptno not in (select deptno from emp where job='SALESMAN');
@@ -101,13 +101,13 @@ SQL> select * from emp where deptno not in (select deptno from emp where job='SA
 ---------- ---------- --------- ---------- -------------- ---------- ---------- 
     DEPTNO                                                                      
 ----------                                                                      
-      7934 MILLER     CLERK           7782 23-1ÔÂ -82           1300            
+      7934 MILLER     CLERK           7782 23-1æœˆ -82           1300            
         10                                                                      
                                                                                 
-      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+      7839 KING       PRESIDENT            17-11æœˆ-81           5000            
         10                                                                      
                                                                                 
-      7782 CLARK      MANAGER         7839 09-6ÔÂ -81           2450            
+      7782 CLARK      MANAGER         7839 09-6æœˆ -81           2450            
         10                                                                      
                                                                                 
 
@@ -115,13 +115,13 @@ SQL> select * from emp where deptno not in (select deptno from emp where job='SA
 ---------- ---------- --------- ---------- -------------- ---------- ---------- 
     DEPTNO                                                                      
 ----------                                                                      
-      7902 FORD       ANALYST         7566 03-12ÔÂ-81           3000            
+      7902 FORD       ANALYST         7566 03-12æœˆ-81           3000            
         20                                                                      
                                                                                 
-      7876 ADAMS      CLERK           7788 23-5ÔÂ -87           1100            
+      7876 ADAMS      CLERK           7788 23-5æœˆ -87           1100            
         20                                                                      
                                                                                 
-      7788 SCOTT      ANALYST         7566 19-4ÔÂ -87           3000            
+      7788 SCOTT      ANALYST         7566 19-4æœˆ -87           3000            
         20                                                                      
                                                                                 
 
@@ -129,14 +129,14 @@ SQL> select * from emp where deptno not in (select deptno from emp where job='SA
 ---------- ---------- --------- ---------- -------------- ---------- ---------- 
     DEPTNO                                                                      
 ----------                                                                      
-      7566 JONES      MANAGER         7839 02-4ÔÂ -81           2975            
+      7566 JONES      MANAGER         7839 02-4æœˆ -81           2975            
         20                                                                      
                                                                                 
-      7369 SMITH      CLERK           7902 17-12ÔÂ-80            800            
+      7369 SMITH      CLERK           7902 17-12æœˆ-80            800            
         20                                                                      
                                                                                 
 
-ÒÑÑ¡Ôñ8ÐÐ¡£
+å·²é€‰æ‹©8è¡Œã€‚
 
 SQL> select * from emp where job != 'SALESMAN' and sal < (select max(sal) from emp where job = 'SALESMAN');
 
@@ -144,13 +144,13 @@ SQL> select * from emp where job != 'SALESMAN' and sal < (select max(sal) from e
 ---------- ---------- --------- ---------- -------------- ---------- ---------- 
     DEPTNO                                                                      
 ----------                                                                      
-      7369 SMITH      CLERK           7902 17-12ÔÂ-80            800            
+      7369 SMITH      CLERK           7902 17-12æœˆ-80            800            
         20                                                                      
                                                                                 
-      7876 ADAMS      CLERK           7788 23-5ÔÂ -87           1100            
+      7876 ADAMS      CLERK           7788 23-5æœˆ -87           1100            
         20                                                                      
                                                                                 
-      7900 JAMES      CLERK           7698 03-12ÔÂ-81            950            
+      7900 JAMES      CLERK           7698 03-12æœˆ-81            950            
         30                                                                      
                                                                                 
 
@@ -158,12 +158,12 @@ SQL> select * from emp where job != 'SALESMAN' and sal < (select max(sal) from e
 ---------- ---------- --------- ---------- -------------- ---------- ---------- 
     DEPTNO                                                                      
 ----------                                                                      
-      7934 MILLER     CLERK           7782 23-1ÔÂ -82           1300            
+      7934 MILLER     CLERK           7782 23-1æœˆ -82           1300            
         10                                                                      
                                                                                 
 
 SQL> desc emp;
- Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
  ----------------------------------------- -------- ----------------------------
  EMPNO                                     NOT NULL NUMBER(4)
  ENAME                                              VARCHAR2(10)
@@ -184,7 +184,7 @@ EMP                            TABLE
 SALGRADE                       TABLE                                            
 
 SQL> desc bonus;
- Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
  ----------------------------------------- -------- ----------------------------
  ENAME                                              VARCHAR2(10)
  JOB                                                VARCHAR2(9)
@@ -192,14 +192,14 @@ SQL> desc bonus;
  COMM                                               NUMBER
 
 SQL> desc salgrade;
- Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
  ----------------------------------------- -------- ----------------------------
  GRADE                                              NUMBER
  LOSAL                                              NUMBER
  HISAL                                              NUMBER
 
 SQL> desc dept;
- Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
  ----------------------------------------- -------- ----------------------------
  DEPTNO                                    NOT NULL NUMBER(2)
  DNAME                                              VARCHAR2(14)
@@ -216,7 +216,7 @@ SQL> select * from dept;
 
 SQL> select ename from emp where deptno = (select deptno from dept where loc='NEW YORK') and sal > (select sal from emp where ename = 'SCOtt' and deptno = (select deptno from dept where loc = 'DALLAS'));
 
-Î´Ñ¡¶¨ÐÐ
+æœªé€‰å®šè¡Œ
 
 SQL> select ename from emp where deptno = (select deptno from dept where loc='NEW YORK') and sal > (select sal from emp where ename = 'SCOTT' and deptno = (select deptno from dept where loc = 'DALLAS'));
 
@@ -227,15 +227,15 @@ KING
 SQL> select ename from emp group by deptno having sal > avg(sal);
 select ename from emp group by deptno having sal > avg(sal)
                                              *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00979: ²»ÊÇ GROUP BY ±í´ïÊ½ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00979: ä¸æ˜¯ GROUP BY è¡¨è¾¾å¼ 
 
 
 SQL> select ename,deptno from emp group by deptno having sal > avg(sal);
 select ename,deptno from emp group by deptno having sal > avg(sal)
                                                     *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00979: ²»ÊÇ GROUP BY ±í´ïÊ½ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00979: ä¸æ˜¯ GROUP BY è¡¨è¾¾å¼ 
 
 
 SQL> select deptno,avg(sal) from emp group by deptno;
@@ -249,30 +249,30 @@ SQL> select deptno,avg(sal) from emp group by deptno;
 SQL> select ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg;
 select ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg
                                                                                *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00933: SQL ÃüÁîÎ´ÕýÈ·½áÊø 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
 
 
 SQL> select emp.ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg;
 select emp.ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg
                                                                                    *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00933: SQL ÃüÁîÎ´ÕýÈ·½áÊø 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
 
 
 SQL> select emp.ename from emp,(select deptno,avg(sal) as a from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.a;
 select emp.ename from emp,(select deptno,avg(sal) as a from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.a
                                                                                  *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00933: SQL ÃüÁîÎ´ÕýÈ·½áÊø 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
 
 
 SQL> select emp.ename
   2  from emp e1;
 select emp.ename
        *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00904: "EMP"."ENAME": ±êÊ¶·ûÎÞÐ§ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "EMP"."ENAME": æ ‡è¯†ç¬¦æ— æ•ˆ 
 
 
 SQL> select e1.ename
@@ -280,8 +280,8 @@ SQL> select e1.ename
   3  where e1.deptno = e2.deptno and e1.sal > e2.avgsal;
 from emp as e1, (select deptno,avg(sal) as avgsal from emp group by deptno) as e2
          *
-µÚ 2 ÐÐ³öÏÖ´íÎó: 
-ORA-00933: SQL ÃüÁîÎ´ÕýÈ·½áÊø 
+ç¬¬ 2 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
 
 
 SQL> select e1.ename
@@ -297,7 +297,7 @@ SCOTT
 JONES                                                                           
 KING                                                                            
 
-ÒÑÑ¡Ôñ6ÐÐ¡£
+å·²é€‰æ‹©6è¡Œã€‚
 
 SQL> spool off
 SQL> select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
@@ -305,12 +305,12 @@ SQL> select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
   3  ;
 from emp e1, (select deptno, (sysdate - hiredate)/)
                                                   *
-µÚ 2 ÐÐ³öÏÖ´íÎó: 
-ORA-00936: È±Ê§±í´ïÊ½ 
+ç¬¬ 2 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00936: ç¼ºå¤±è¡¨è¾¾å¼ 
 
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
   2  from emp e1, (select deptno, (sysdate - hiredate)/365 year) e2
@@ -319,12 +319,12 @@ SQL> edit
   5  /
 from emp e1, (select deptno, (sysdate - hiredate)/365 year) e2
                                                           *
-µÚ 2 ÐÐ³öÏÖ´íÎó: 
-ORA-00923: Î´ÕÒµ½ÒªÇóµÄ FROM ¹Ø¼ü×Ö 
+ç¬¬ 2 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00923: æœªæ‰¾åˆ°è¦æ±‚çš„ FROM å…³é”®å­— 
 
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
   2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
@@ -333,12 +333,12 @@ SQL> edit
 SQL> /
 select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
                      *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00904: "E1"."ENO": ±êÊ¶·ûÎÞÐ§ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "E1"."ENO": æ ‡è¯†ç¬¦æ— æ•ˆ 
 
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select deptno, count(e1.empno),avg(e1.sal), avg(e2.year)
   2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
@@ -347,12 +347,12 @@ SQL> edit
 SQL> /
 select deptno, count(e1.empno),avg(e1.sal), avg(e2.year)
        *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00918: Î´Ã÷È·¶¨ÒåÁÐ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00918: æœªæ˜Žç¡®å®šä¹‰åˆ— 
 
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select e1.deptno, count(e1.empno),avg(e1.sal), avg(e2.year)
   2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
@@ -367,7 +367,7 @@ SQL> /
         10               9  2916.66667   38.9610201                             
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select e1.deptno, e1.countnum,e1.avgsal,e2.avgyear
   2  from (select deptno, count(*) countnum, avg(sal) avgsal from emp group by deptno) e1, (select deptno, avg((sysdate - hiredate)/365) avgyear from emp group by deptno) e2
@@ -381,7 +381,7 @@ SQL> /
         10          3 2916.66667  38.961032                                     
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select e1.deptno, count(e1.*),avg(e1.sal), avg(e2.year)
   2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
@@ -390,12 +390,12 @@ SQL> edit
 SQL> /
 select e1.deptno, count(e1.*),avg(e1.sal), avg(e2.year)
                            *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-01747: user.table.column, table.column »òÁÐËµÃ÷ÎÞÐ§ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-01747: user.table.column, table.column æˆ–åˆ—è¯´æ˜Žæ— æ•ˆ 
 
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select deptno, count(*),avg(sal), avg((sysdate - hiredate)/365)
   2  from emp
@@ -403,12 +403,12 @@ SQL> edit
 SQL> /
 group by e1.deptno
          *
-µÚ 3 ÐÐ³öÏÖ´íÎó: 
-ORA-00904: "E1"."DEPTNO": ±êÊ¶·ûÎÞÐ§ 
+ç¬¬ 3 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "E1"."DEPTNO": æ ‡è¯†ç¬¦æ— æ•ˆ 
 
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select deptno, count(*),avg(sal), avg((sysdate - hiredate)/365)
   2  from emp
@@ -443,20 +443,20 @@ FORD            36000
 SCOTT           36000                                                           
 KING            60000                                                           
 
-ÒÑÑ¡Ôñ14ÐÐ¡£
+å·²é€‰æ‹©14è¡Œã€‚
 
 SQL> select row_number() over from emp;
 select row_number() over from emp
        *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-30484: ¶ªÊ§µÄ´Ëº¯Êý´°¿ÚËµÃ÷ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-30484: ä¸¢å¤±çš„æ­¤å‡½æ•°çª—å£è¯´æ˜Ž 
 
 
 SQL> select row_number(*) over from emp;
 select row_number(*) over from emp
                   *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00907: È±Ê§ÓÒÀ¨ºÅ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00907: ç¼ºå¤±å³æ‹¬å· 
 
 
 SQL> select row_number() over(order by sal) from emp;
@@ -481,7 +481,7 @@ ROW_NUMBER()OVER(ORDERBYSAL)
                           13                                                    
                           14                                                    
 
-ÒÑÑ¡Ôñ14ÐÐ¡£
+å·²é€‰æ‹©14è¡Œã€‚
 
 SQL> select row_number() over(order by sal), sal from emp;
 
@@ -505,13 +505,13 @@ ROW_NUMBER()OVER(ORDERBYSAL)        SAL
                           13       3000                                         
                           14       5000                                         
 
-ÒÑÑ¡Ôñ14ÐÐ¡£
+å·²é€‰æ‹©14è¡Œã€‚
 
 SQL> select ename from (select ename, row_number() over(order by sal desc) );
 select ename from (select ename, row_number() over(order by sal desc) )
                                                                       *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00923: Î´ÕÒµ½ÒªÇóµÄ FROM ¹Ø¼ü×Ö 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00923: æœªæ‰¾åˆ°è¦æ±‚çš„ FROM å…³é”®å­— 
 
 
 SQL> select ename
@@ -544,19 +544,19 @@ ADAMS            1100
 JAMES             950                                                           
 SMITH             800                                                           
 
-ÒÑÑ¡Ôñ14ÐÐ¡£
+å·²é€‰æ‹©14è¡Œã€‚
 
 SQL> select select ename
   2  from (select ename,row_number() over(order by sal) num from emp)
   3  where num = 1;
 select select ename
        *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00936: È±Ê§±í´ïÊ½ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00936: ç¼ºå¤±è¡¨è¾¾å¼ 
 
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select ename
   2* from (select ename,row_number() over(order by sal) num from emp)
@@ -582,10 +582,10 @@ JAMES
 FORD                                                                            
 MILLER                                                                          
 
-ÒÑÑ¡Ôñ14ÐÐ¡£
+å·²é€‰æ‹©14è¡Œã€‚
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select *
   2* from (select ename,row_number() over(order by sal) num from emp)
@@ -611,10 +611,10 @@ SCOTT              12
 FORD               13                                                           
 KING               14                                                           
 
-ÒÑÑ¡Ôñ14ÐÐ¡£
+å·²é€‰æ‹©14è¡Œã€‚
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select ename
   2  from (select ename,row_number() over(order by sal desc) num from emp)
@@ -628,15 +628,15 @@ KING
 SQL> select ename,row_number() over(order by sal desc) num from emp where num = 1;
 select ename,row_number() over(order by sal desc) num from emp where num = 1
                                                                      *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-00904: "NUM": ±êÊ¶·ûÎÞÐ§ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "NUM": æ ‡è¯†ç¬¦æ— æ•ˆ 
 
 
 SQL> select ename,row_number() over(order by sal desc) num from emp where row_number() over(order by sal desc) = 1;
 select ename,row_number() over(order by sal desc) num from emp where row_number() over(order by sal desc) = 1
                                                                      *
-µÚ 1 ÐÐ³öÏÖ´íÎó: 
-ORA-30483: window  º¯ÊýÔÚ´Ë½ûÓÃ 
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-30483: window  å‡½æ•°åœ¨æ­¤ç¦ç”¨ 
 
 
 SQL> select ename
@@ -652,7 +652,7 @@ MILLER
 WARD                                                                            
 
 SQL> edit
-ÒÑÐ´Èë file afiedt.buf
+å·²å†™å…¥ file afiedt.buf
 
   1  select ename
   2  from (select ename,row_number() over(partition by deptno order by sal desc) num from emp)
@@ -668,6 +668,50 @@ FORD
 BLAKE                                                                           
 ALLEN                                                                           
 
-ÒÑÑ¡Ôñ6ÐÐ¡£
+å·²é€‰æ‹©6è¡Œã€‚
 
 SQL> spool off
+
+SQL> select * from  tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+SALGRADE                       TABLE                                            
+
+SQL> desc salgrade;
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
+ ----------------------------------------- -------- ----------------------------
+ GRADE                                              NUMBER
+ LOSAL                                              NUMBER
+ HISAL                                              NUMBER
+
+SQL> select emp.ename,emp.sal,salgrade.grade from emp,salgrade where emp.sal between salgrade.losal and salgrade.hisal;
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+SMITH             800          1                                                
+JAMES             950          1                                                
+ADAMS            1100          1                                                
+WARD             1250          2                                                
+MARTIN           1250          2                                                
+MILLER           1300          2                                                
+TURNER           1500          3                                                
+ALLEN            1600          3                                                
+CLARK            2450          4                                                
+BLAKE            2850          4                                                
+JONES            2975          4                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+SCOTT            3000          4                                                
+FORD             3000          4                                                
+KING             5000          5                                                
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> spool off
+
