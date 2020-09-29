@@ -1,0 +1,1475 @@
+SQL> select ename from emp where sal > (select sal from emp where ename='SMITH');
+
+ENAME                                                                           
+----------                                                                      
+ALLEN                                                                           
+WARD                                                                            
+JONES                                                                           
+MARTIN                                                                          
+BLAKE                                                                           
+CLARK                                                                           
+SCOTT                                                                           
+KING                                                                            
+TURNER                                                                          
+ADAMS                                                                           
+JAMES                                                                           
+
+ENAME                                                                           
+----------                                                                      
+FORD                                                                            
+MILLER                                                                          
+
+å·²é€‰æ‹©13è¡Œã€‚
+
+SQL> select ename, sal from emp order by sal;
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+SMITH             800                                                           
+JAMES             950                                                           
+ADAMS            1100                                                           
+WARD             1250                                                           
+MARTIN           1250                                                           
+MILLER           1300                                                           
+TURNER           1500                                                           
+ALLEN            1600                                                           
+CLARK            2450                                                           
+BLAKE            2850                                                           
+JONES            2975                                                           
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+SCOTT            3000                                                           
+FORD             3000                                                           
+KING             5000                                                           
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> select ename from emp where sal > (select avg(sal) from emp);
+
+ENAME                                                                           
+----------                                                                      
+JONES                                                                           
+BLAKE                                                                           
+CLARK                                                                           
+SCOTT                                                                           
+KING                                                                            
+FORD                                                                            
+
+å·²é€‰æ‹©6è¡Œã€‚
+
+SQL> select ename from emp where job=(select job from emp where ename='SCOTT');
+
+ENAME                                                                           
+----------                                                                      
+SCOTT                                                                           
+FORD                                                                            
+
+SQL> select ename from emp where job=(select job from emp where ename='SCOTT') and ename != 'SCOTT';
+
+ENAME                                                                           
+----------                                                                      
+FORD                                                                            
+
+SQL> select ename, sal from emp where sal in (select sal from emp where deptno=30) ;
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+ALLEN            1600                                                           
+MARTIN           1250                                                           
+WARD             1250                                                           
+BLAKE            2850                                                           
+TURNER           1500                                                           
+JAMES             950                                                           
+
+å·²é€‰æ‹©6è¡Œã€‚
+
+SQL> select ename, sal from emp where sal in (select sal from emp where deptno=30) and deptno != 30 ;
+
+æœªé€‰å®šè¡Œ
+
+SQL> select * from emp where deptno != (select deptno from emp where job='SALESMAN');
+select * from emp where deptno != (select deptno from emp where job='SALESMAN')
+                                   *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-01427: å•è¡Œå­æŸ¥è¯¢è¿”å›žå¤šä¸ªè¡Œ 
+
+
+SQL> select * from emp where deptno not in (select deptno from emp where job='SALESMAN');
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7934 MILLER     CLERK           7782 23-1æœˆ -82           1300            
+        10                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-11æœˆ-81           5000            
+        10                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-6æœˆ -81           2450            
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-12æœˆ-81           3000            
+        20                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-5æœˆ -87           1100            
+        20                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-4æœˆ -87           3000            
+        20                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-4æœˆ -81           2975            
+        20                                                                      
+                                                                                
+      7369 SMITH      CLERK           7902 17-12æœˆ-80            800            
+        20                                                                      
+                                                                                
+
+å·²é€‰æ‹©8è¡Œã€‚
+
+SQL> select * from emp where job != 'SALESMAN' and sal < (select max(sal) from emp where job = 'SALESMAN');
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-12æœˆ-80            800            
+        20                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-5æœˆ -87           1100            
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-12æœˆ-81            950            
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7934 MILLER     CLERK           7782 23-1æœˆ -82           1300            
+        10                                                                      
+                                                                                
+
+SQL> desc emp;
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+SALGRADE                       TABLE                                            
+
+SQL> desc bonus;
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
+ ----------------------------------------- -------- ----------------------------
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ SAL                                                NUMBER
+ COMM                                               NUMBER
+
+SQL> desc salgrade;
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
+ ----------------------------------------- -------- ----------------------------
+ GRADE                                              NUMBER
+ LOSAL                                              NUMBER
+ HISAL                                              NUMBER
+
+SQL> desc dept;
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
+ ----------------------------------------- -------- ----------------------------
+ DEPTNO                                    NOT NULL NUMBER(2)
+ DNAME                                              VARCHAR2(14)
+ LOC                                                VARCHAR2(13)
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+
+SQL> select ename from emp where deptno = (select deptno from dept where loc='NEW YORK') and sal > (select sal from emp where ename = 'SCOtt' and deptno = (select deptno from dept where loc = 'DALLAS'));
+
+æœªé€‰å®šè¡Œ
+
+SQL> select ename from emp where deptno = (select deptno from dept where loc='NEW YORK') and sal > (select sal from emp where ename = 'SCOTT' and deptno = (select deptno from dept where loc = 'DALLAS'));
+
+ENAME                                                                           
+----------                                                                      
+KING                                                                            
+
+SQL> select ename from emp group by deptno having sal > avg(sal);
+select ename from emp group by deptno having sal > avg(sal)
+                                             *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00979: ä¸æ˜¯ GROUP BY è¡¨è¾¾å¼ 
+
+
+SQL> select ename,deptno from emp group by deptno having sal > avg(sal);
+select ename,deptno from emp group by deptno having sal > avg(sal)
+                                                    *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00979: ä¸æ˜¯ GROUP BY è¡¨è¾¾å¼ 
+
+
+SQL> select deptno,avg(sal) from emp group by deptno;
+
+    DEPTNO   AVG(SAL)                                                           
+---------- ----------                                                           
+        30 1566.66667                                                           
+        20       2175                                                           
+        10 2916.66667                                                           
+
+SQL> select ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg;
+select ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg
+                                                                               *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
+
+
+SQL> select emp.ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg;
+select emp.ename from emp,(select deptno,avg(sal) as avg from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.avg
+                                                                                   *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
+
+
+SQL> select emp.ename from emp,(select deptno,avg(sal) as a from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.a;
+select emp.ename from emp,(select deptno,avg(sal) as a from emp group by deptno) as e2 where emp.deptno = e2.deptno and emp.sal > e2.a
+                                                                                 *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
+
+
+SQL> select emp.ename
+  2  from emp e1;
+select emp.ename
+       *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "EMP"."ENAME": æ ‡è¯†ç¬¦æ— æ•ˆ 
+
+
+SQL> select e1.ename
+  2  from emp as e1, (select deptno,avg(sal) as avgsal from emp group by deptno) as e2
+  3  where e1.deptno = e2.deptno and e1.sal > e2.avgsal;
+from emp as e1, (select deptno,avg(sal) as avgsal from emp group by deptno) as e2
+         *
+ç¬¬ 2 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00933: SQL å‘½ä»¤æœªæ­£ç¡®ç»“æŸ 
+
+
+SQL> select e1.ename
+  2  from emp e1, (select deptno,avg(sal) as avgsal from emp group by deptno) e2
+  3  where e1.deptno = e2.deptno and e1.sal > e2.avgsal;
+
+ENAME                                                                           
+----------                                                                      
+BLAKE                                                                           
+ALLEN                                                                           
+FORD                                                                            
+SCOTT                                                                           
+JONES                                                                           
+KING                                                                            
+
+å·²é€‰æ‹©6è¡Œã€‚
+
+SQL> spool off
+SQL> select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
+  2  from emp e1, (select deptno, (sysdate - hiredate)/)
+  3  ;
+from emp e1, (select deptno, (sysdate - hiredate)/)
+                                                  *
+ç¬¬ 2 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00936: ç¼ºå¤±è¡¨è¾¾å¼ 
+
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
+  2  from emp e1, (select deptno, (sysdate - hiredate)/365 year) e2
+  3  where e1.deptno = e2.deptno
+  4* group by e1.deptno
+  5  /
+from emp e1, (select deptno, (sysdate - hiredate)/365 year) e2
+                                                          *
+ç¬¬ 2 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00923: æœªæ‰¾åˆ°è¦æ±‚çš„ FROM å…³é”®å­— 
+
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
+  2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
+  3  where e1.deptno = e2.deptno
+  4* group by e1.deptno
+SQL> /
+select deptno, count(e1.eno),avg(e1.sal), avg(e2.year)
+                     *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "E1"."ENO": æ ‡è¯†ç¬¦æ— æ•ˆ 
+
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select deptno, count(e1.empno),avg(e1.sal), avg(e2.year)
+  2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
+  3  where e1.deptno = e2.deptno
+  4* group by e1.deptno
+SQL> /
+select deptno, count(e1.empno),avg(e1.sal), avg(e2.year)
+       *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00918: æœªæ˜Žç¡®å®šä¹‰åˆ— 
+
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select e1.deptno, count(e1.empno),avg(e1.sal), avg(e2.year)
+  2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
+  3  where e1.deptno = e2.deptno
+  4* group by e1.deptno
+SQL> /
+
+    DEPTNO COUNT(E1.EMPNO) AVG(E1.SAL) AVG(E2.YEAR)                             
+---------- --------------- ----------- ------------                             
+        30              36  1566.66667   39.2596502                             
+        20              25        2175   36.9880521                             
+        10               9  2916.66667   38.9610201                             
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select e1.deptno, e1.countnum,e1.avgsal,e2.avgyear
+  2  from (select deptno, count(*) countnum, avg(sal) avgsal from emp group by deptno) e1, (select deptno, avg((sysdate - hiredate)/365) avgyear from emp group by deptno) e2
+  3* where e1.deptno = e2.deptno
+SQL> /
+
+    DEPTNO   COUNTNUM     AVGSAL    AVGYEAR                                     
+---------- ---------- ---------- ----------                                     
+        30          6 1566.66667 39.2596621                                     
+        20          5       2175 36.9880639                                     
+        10          3 2916.66667  38.961032                                     
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select e1.deptno, count(e1.*),avg(e1.sal), avg(e2.year)
+  2  from emp e1, (select deptno, (sysdate - hiredate)/365 year from emp) e2
+  3  where e1.deptno = e2.deptno
+  4* group by e1.deptno
+SQL> /
+select e1.deptno, count(e1.*),avg(e1.sal), avg(e2.year)
+                           *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-01747: user.table.column, table.column æˆ–åˆ—è¯´æ˜Žæ— æ•ˆ 
+
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select deptno, count(*),avg(sal), avg((sysdate - hiredate)/365)
+  2  from emp
+  3* group by e1.deptno
+SQL> /
+group by e1.deptno
+         *
+ç¬¬ 3 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "E1"."DEPTNO": æ ‡è¯†ç¬¦æ— æ•ˆ 
+
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select deptno, count(*),avg(sal), avg((sysdate - hiredate)/365)
+  2  from emp
+  3* group by deptno
+SQL> /
+
+    DEPTNO   COUNT(*)   AVG(SAL) AVG((SYSDATE-HIREDATE)/365)                    
+---------- ---------- ---------- ---------------------------                    
+        30          6 1566.66667                  39.2596704                    
+        20          5       2175                  36.9880722                    
+        10          3 2916.66667                  38.9610403                    
+
+SQL> select ename, (sal+nvl(comm,0))*12 yearsal from emp order by yearsal;
+
+ENAME         YEARSAL                                                           
+---------- ----------                                                           
+SMITH            9600                                                           
+JAMES           11400                                                           
+ADAMS           13200                                                           
+MILLER          15600                                                           
+TURNER          18000                                                           
+WARD            21000                                                           
+ALLEN           22800                                                           
+CLARK           29400                                                           
+MARTIN          31800                                                           
+BLAKE           34200                                                           
+JONES           35700                                                           
+
+ENAME         YEARSAL                                                           
+---------- ----------                                                           
+FORD            36000                                                           
+SCOTT           36000                                                           
+KING            60000                                                           
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> select row_number() over from emp;
+select row_number() over from emp
+       *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-30484: ä¸¢å¤±çš„æ­¤å‡½æ•°çª—å£è¯´æ˜Ž 
+
+
+SQL> select row_number(*) over from emp;
+select row_number(*) over from emp
+                  *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00907: ç¼ºå¤±å³æ‹¬å· 
+
+
+SQL> select row_number() over(order by sal) from emp;
+
+ROW_NUMBER()OVER(ORDERBYSAL)                                                    
+----------------------------                                                    
+                           1                                                    
+                           2                                                    
+                           3                                                    
+                           4                                                    
+                           5                                                    
+                           6                                                    
+                           7                                                    
+                           8                                                    
+                           9                                                    
+                          10                                                    
+                          11                                                    
+
+ROW_NUMBER()OVER(ORDERBYSAL)                                                    
+----------------------------                                                    
+                          12                                                    
+                          13                                                    
+                          14                                                    
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> select row_number() over(order by sal), sal from emp;
+
+ROW_NUMBER()OVER(ORDERBYSAL)        SAL                                         
+---------------------------- ----------                                         
+                           1        800                                         
+                           2        950                                         
+                           3       1100                                         
+                           4       1250                                         
+                           5       1250                                         
+                           6       1300                                         
+                           7       1500                                         
+                           8       1600                                         
+                           9       2450                                         
+                          10       2850                                         
+                          11       2975                                         
+
+ROW_NUMBER()OVER(ORDERBYSAL)        SAL                                         
+---------------------------- ----------                                         
+                          12       3000                                         
+                          13       3000                                         
+                          14       5000                                         
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> select ename from (select ename, row_number() over(order by sal desc) );
+select ename from (select ename, row_number() over(order by sal desc) )
+                                                                      *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00923: æœªæ‰¾åˆ°è¦æ±‚çš„ FROM å…³é”®å­— 
+
+
+SQL> select ename
+  2  from (select ename,row_number() over(order by sal) num from emp)
+  3  where num = 1;
+
+ENAME                                                                           
+----------                                                                      
+SMITH                                                                           
+
+SQL> select ename, sal from emp order by sal desc;
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+KING             5000                                                           
+FORD             3000                                                           
+SCOTT            3000                                                           
+JONES            2975                                                           
+BLAKE            2850                                                           
+CLARK            2450                                                           
+ALLEN            1600                                                           
+TURNER           1500                                                           
+MILLER           1300                                                           
+WARD             1250                                                           
+MARTIN           1250                                                           
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+ADAMS            1100                                                           
+JAMES             950                                                           
+SMITH             800                                                           
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> select select ename
+  2  from (select ename,row_number() over(order by sal) num from emp)
+  3  where num = 1;
+select select ename
+       *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00936: ç¼ºå¤±è¡¨è¾¾å¼ 
+
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select ename
+  2* from (select ename,row_number() over(order by sal) num from emp)
+SQL> /
+
+ENAME                                                                           
+----------                                                                      
+SMITH                                                                           
+ALLEN                                                                           
+WARD                                                                            
+JONES                                                                           
+MARTIN                                                                          
+BLAKE                                                                           
+CLARK                                                                           
+SCOTT                                                                           
+KING                                                                            
+TURNER                                                                          
+ADAMS                                                                           
+
+ENAME                                                                           
+----------                                                                      
+JAMES                                                                           
+FORD                                                                            
+MILLER                                                                          
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select *
+  2* from (select ename,row_number() over(order by sal) num from emp)
+SQL> /
+
+ENAME             NUM                                                           
+---------- ----------                                                           
+SMITH               1                                                           
+JAMES               2                                                           
+ADAMS               3                                                           
+WARD                4                                                           
+MARTIN              5                                                           
+MILLER              6                                                           
+TURNER              7                                                           
+ALLEN               8                                                           
+CLARK               9                                                           
+BLAKE              10                                                           
+JONES              11                                                           
+
+ENAME             NUM                                                           
+---------- ----------                                                           
+SCOTT              12                                                           
+FORD               13                                                           
+KING               14                                                           
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select ename
+  2  from (select ename,row_number() over(order by sal desc) num from emp)
+  3* where num = 1
+SQL> /
+
+ENAME                                                                           
+----------                                                                      
+KING                                                                            
+
+SQL> select ename,row_number() over(order by sal desc) num from emp where num = 1;
+select ename,row_number() over(order by sal desc) num from emp where num = 1
+                                                                     *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-00904: "NUM": æ ‡è¯†ç¬¦æ— æ•ˆ 
+
+
+SQL> select ename,row_number() over(order by sal desc) num from emp where row_number() over(order by sal desc) = 1;
+select ename,row_number() over(order by sal desc) num from emp where row_number() over(order by sal desc) = 1
+                                                                     *
+ç¬¬ 1 è¡Œå‡ºçŽ°é”™è¯¯: 
+ORA-30483: window  å‡½æ•°åœ¨æ­¤ç¦ç”¨ 
+
+
+SQL> select ename
+  2  from (select ename,row_number() over(order by sal desc) num from emp)
+  3  where num between 6 and 10;
+
+ENAME                                                                           
+----------                                                                      
+CLARK                                                                           
+ALLEN                                                                           
+TURNER                                                                          
+MILLER                                                                          
+WARD                                                                            
+
+SQL> edit
+å·²å†™å…¥ file afiedt.buf
+
+  1  select ename
+  2  from (select ename,row_number() over(partition by deptno order by sal desc) num from emp)
+  3* where num < 3
+SQL> /
+
+ENAME                                                                           
+----------                                                                      
+KING                                                                            
+CLARK                                                                           
+SCOTT                                                                           
+FORD                                                                            
+BLAKE                                                                           
+ALLEN                                                                           
+
+å·²é€‰æ‹©6è¡Œã€‚
+
+SQL> spool off
+
+SQL> select * from  tab
+  2  ;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+SALGRADE                       TABLE                                            
+
+SQL> desc salgrade;
+ åç§°                                      æ˜¯å¦ä¸ºç©º? ç±»åž‹
+ ----------------------------------------- -------- ----------------------------
+ GRADE                                              NUMBER
+ LOSAL                                              NUMBER
+ HISAL                                              NUMBER
+
+SQL> select emp.ename,emp.sal,salgrade.grade from emp,salgrade where emp.sal between salgrade.losal and salgrade.hisal;
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+SMITH             800          1                                                
+JAMES             950          1                                                
+ADAMS            1100          1                                                
+WARD             1250          2                                                
+MARTIN           1250          2                                                
+MILLER           1300          2                                                
+TURNER           1500          3                                                
+ALLEN            1600          3                                                
+CLARK            2450          4                                                
+BLAKE            2850          4                                                
+JONES            2975          4                                                
+
+ENAME             SAL      GRADE                                                
+---------- ---------- ----------                                                
+SCOTT            3000          4                                                
+FORD             3000          4                                                
+KING             5000          5                                                
+
+å·²é€‰æ‹©14è¡Œã€‚
+
+SQL> spool off
+
+SQL> select e.ename, e.deptno, d.dname from emp e, dept d where e.deptno = d.deptno
+  2  ;
+
+ENAME          DEPTNO DNAME                                                     
+---------- ---------- --------------                                            
+SMITH              20 RESEARCH                                                  
+ALLEN              30 SALES                                                     
+WARD               30 SALES                                                     
+JONES              20 RESEARCH                                                  
+MARTIN             30 SALES                                                     
+BLAKE              30 SALES                                                     
+CLARK              10 ACCOUNTING                                                
+SCOTT              20 RESEARCH                                                  
+KING               10 ACCOUNTING                                                
+TURNER             30 SALES                                                     
+ADAMS              20 RESEARCH                                                  
+
+ENAME          DEPTNO DNAME                                                     
+---------- ---------- --------------                                            
+JAMES              30 SALES                                                     
+FORD               20 RESEARCH                                                  
+MILLER             10 ACCOUNTING                                                
+
+ÒÑÑ¡Ôñ14ÐÐ¡£
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+SALGRADE                       TABLE                                            
+
+SQL> describe bonus;
+ Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ ----------------------------------------- -------- ----------------------------
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ SAL                                                NUMBER
+ COMM                                               NUMBER
+
+SQL> desc salgrade;
+ Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ ----------------------------------------- -------- ----------------------------
+ GRADE                                              NUMBER
+ LOSAL                                              NUMBER
+ HISAL                                              NUMBER
+
+SQL> desc dept
+ Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ ----------------------------------------- -------- ----------------------------
+ DEPTNO                                    NOT NULL NUMBER(2)
+ DNAME                                              VARCHAR2(14)
+ LOC                                                VARCHAR2(13)
+
+SQL> desc emp;
+ Ãû³Æ                                      ÊÇ·ñÎª¿Õ? ÀàÐÍ
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> select e.empno,e.ename,e.deptno,
+  2  d.dname,d.loc from emp e,dept d
+  3  where d.deptno = e.deptno;
+
+     EMPNO ENAME          DEPTNO DNAME          LOC                             
+---------- ---------- ---------- -------------- -------------                   
+      7369 SMITH              20 RESEARCH       DALLAS                          
+      7499 ALLEN              30 SALES          CHICAGO                         
+      7521 WARD               30 SALES          CHICAGO                         
+      7566 JONES              20 RESEARCH       DALLAS                          
+      7654 MARTIN             30 SALES          CHICAGO                         
+      7698 BLAKE              30 SALES          CHICAGO                         
+      7782 CLARK              10 ACCOUNTING     NEW YORK                        
+      7788 SCOTT              20 RESEARCH       DALLAS                          
+      7839 KING               10 ACCOUNTING     NEW YORK                        
+      7844 TURNER             30 SALES          CHICAGO                         
+      7876 ADAMS              20 RESEARCH       DALLAS                          
+
+     EMPNO ENAME          DEPTNO DNAME          LOC                             
+---------- ---------- ---------- -------------- -------------                   
+      7900 JAMES              30 SALES          CHICAGO                         
+      7902 FORD               20 RESEARCH       DALLAS                          
+      7934 MILLER             10 ACCOUNTING     NEW YORK                        
+
+ÒÑÑ¡Ôñ14ÐÐ¡£
+
+SQL> select e1.ename,e1.job,e2.ename from emp e1,emp e2
+  2  where e1.mgr=e2.empno;
+
+ENAME      JOB       ENAME                                                      
+---------- --------- ----------                                                 
+FORD       ANALYST   JONES                                                      
+SCOTT      ANALYST   JONES                                                      
+JAMES      CLERK     BLAKE                                                      
+TURNER     SALESMAN  BLAKE                                                      
+MARTIN     SALESMAN  BLAKE                                                      
+WARD       SALESMAN  BLAKE                                                      
+ALLEN      SALESMAN  BLAKE                                                      
+MILLER     CLERK     CLARK                                                      
+ADAMS      CLERK     SCOTT                                                      
+CLARK      MANAGER   KING                                                       
+BLAKE      MANAGER   KING                                                       
+
+ENAME      JOB       ENAME                                                      
+---------- --------- ----------                                                 
+JONES      MANAGER   KING                                                       
+SMITH      CLERK     FORD                                                       
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> select e1.ename,e1.job,e2.ename from emp e1,emp e2
+  2  where nvl(e1.mgr,0)=e2.empno;
+
+ENAME      JOB       ENAME                                                      
+---------- --------- ----------                                                 
+FORD       ANALYST   JONES                                                      
+SCOTT      ANALYST   JONES                                                      
+JAMES      CLERK     BLAKE                                                      
+TURNER     SALESMAN  BLAKE                                                      
+MARTIN     SALESMAN  BLAKE                                                      
+WARD       SALESMAN  BLAKE                                                      
+ALLEN      SALESMAN  BLAKE                                                      
+MILLER     CLERK     CLARK                                                      
+ADAMS      CLERK     SCOTT                                                      
+CLARK      MANAGER   KING                                                       
+BLAKE      MANAGER   KING                                                       
+
+ENAME      JOB       ENAME                                                      
+---------- --------- ----------                                                 
+JONES      MANAGER   KING                                                       
+SMITH      CLERK     FORD                                                       
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.job,e2.ename from emp e1,emp e2
+  2* where nvl(e1.mgr,e1.ename)=e2.empno
+SQL> /
+where nvl(e1.mgr,e1.ename)=e2.empno
+                 *
+µÚ 2 ÐÐ³öÏÖ´íÎó: 
+ORA-01722: ÎÞÐ§Êý×Ö 
+
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.job,e2.ename from emp e1,emp e2
+  2* where nvl(e1.mgr,e1.empno)=e2.empno
+SQL> /
+
+ENAME      JOB       ENAME                                                      
+---------- --------- ----------                                                 
+FORD       ANALYST   JONES                                                      
+SCOTT      ANALYST   JONES                                                      
+JAMES      CLERK     BLAKE                                                      
+TURNER     SALESMAN  BLAKE                                                      
+MARTIN     SALESMAN  BLAKE                                                      
+WARD       SALESMAN  BLAKE                                                      
+ALLEN      SALESMAN  BLAKE                                                      
+MILLER     CLERK     CLARK                                                      
+ADAMS      CLERK     SCOTT                                                      
+KING       PRESIDENT KING                                                       
+CLARK      MANAGER   KING                                                       
+
+ENAME      JOB       ENAME                                                      
+---------- --------- ----------                                                 
+BLAKE      MANAGER   KING                                                       
+JONES      MANAGER   KING                                                       
+SMITH      CLERK     FORD                                                       
+
+ÒÑÑ¡Ôñ14ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.job,e2.ename boss from emp e1,emp e2
+  2* where e1.empno=e2.empno and e1.mgr = e2.empno
+SQL> /
+
+Î´Ñ¡¶¨ÐÐ
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.job,e2.ename boss from emp e1,emp e2
+  2* where e1.mgr(+) = e2.empno
+SQL> /
+
+ENAME      JOB       BOSS                                                       
+---------- --------- ----------                                                 
+SMITH      CLERK     FORD                                                       
+ALLEN      SALESMAN  BLAKE                                                      
+WARD       SALESMAN  BLAKE                                                      
+JONES      MANAGER   KING                                                       
+MARTIN     SALESMAN  BLAKE                                                      
+BLAKE      MANAGER   KING                                                       
+CLARK      MANAGER   KING                                                       
+SCOTT      ANALYST   JONES                                                      
+TURNER     SALESMAN  BLAKE                                                      
+ADAMS      CLERK     SCOTT                                                      
+JAMES      CLERK     BLAKE                                                      
+
+ENAME      JOB       BOSS                                                       
+---------- --------- ----------                                                 
+FORD       ANALYST   JONES                                                      
+MILLER     CLERK     CLARK                                                      
+                     TURNER                                                     
+                     WARD                                                       
+                     MARTIN                                                     
+                     ALLEN                                                      
+                     MILLER                                                     
+                     SMITH                                                      
+                     ADAMS                                                      
+                     JAMES                                                      
+
+ÒÑÑ¡Ôñ21ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.job,e2.ename boss from emp e1,emp e2
+  2* where e1.mgr = e2.empno(+)
+SQL> /
+
+ENAME      JOB       BOSS                                                       
+---------- --------- ----------                                                 
+FORD       ANALYST   JONES                                                      
+SCOTT      ANALYST   JONES                                                      
+JAMES      CLERK     BLAKE                                                      
+TURNER     SALESMAN  BLAKE                                                      
+MARTIN     SALESMAN  BLAKE                                                      
+WARD       SALESMAN  BLAKE                                                      
+ALLEN      SALESMAN  BLAKE                                                      
+MILLER     CLERK     CLARK                                                      
+ADAMS      CLERK     SCOTT                                                      
+CLARK      MANAGER   KING                                                       
+BLAKE      MANAGER   KING                                                       
+
+ENAME      JOB       BOSS                                                       
+---------- --------- ----------                                                 
+JONES      MANAGER   KING                                                       
+SMITH      CLERK     FORD                                                       
+KING       PRESIDENT                                                            
+
+ÒÑÑ¡Ôñ14ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.job,e2.ename boss,d.dname from emp e1,emp e2,dept d
+  2* where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+SQL> /
+
+ENAME      JOB       BOSS       DNAME                                           
+---------- --------- ---------- --------------                                  
+FORD       ANALYST   JONES      RESEARCH                                        
+SCOTT      ANALYST   JONES      RESEARCH                                        
+JAMES      CLERK     BLAKE      SALES                                           
+TURNER     SALESMAN  BLAKE      SALES                                           
+MARTIN     SALESMAN  BLAKE      SALES                                           
+WARD       SALESMAN  BLAKE      SALES                                           
+ALLEN      SALESMAN  BLAKE      SALES                                           
+MILLER     CLERK     CLARK      ACCOUNTING                                      
+ADAMS      CLERK     SCOTT      RESEARCH                                        
+CLARK      MANAGER   KING       ACCOUNTING                                      
+BLAKE      MANAGER   KING       SALES                                           
+
+ENAME      JOB       BOSS       DNAME                                           
+---------- --------- ---------- --------------                                  
+JONES      MANAGER   KING       RESEARCH                                        
+SMITH      CLERK     FORD       RESEARCH                                        
+KING       PRESIDENT            ACCOUNTING                                      
+
+ÒÑÑ¡Ôñ14ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s.salgrade,
+  2  e2.ename bossname,e2.sal bosssal,s.salgrade bossgrade 
+  3  from emp e1,emp e2,dept d,salgrade s
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5* and e1.sal between s.lowsal and s.higsal and e2.dal between s.lowsal and s.higsal
+SQL> ;
+  1  select e1.ename,e1.sal,d.dname,s.salgrade,
+  2  e2.ename bossname,e2.sal bosssal,s.salgrade bossgrade 
+  3  from emp e1,emp e2,dept d,salgrade s
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5* and e1.sal between s.lowsal and s.higsal and e2.dal between s.lowsal and s.higsal
+SQL> /
+and e1.sal between s.lowsal and s.higsal and e2.dal between s.lowsal and s.higsal
+                                                                         *
+µÚ 5 ÐÐ³öÏÖ´íÎó: 
+ORA-00904: "S"."HIGSAL": ±êÊ¶·ûÎÞÐ§ 
+
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s.grade,
+  2  e2.ename bossname,e2.sal bosssal,s.grade bossgrade 
+  3  from emp e1,emp e2,dept d,salgrade s
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5* and e1.sal between s.losal and s.hisal and e2.sal between s.losal and s.hisal
+SQL> /
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade 
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5* and e1.sal between s1.losal and s1.hisal and e2.sal between s2.losal and s2.hisal
+SQL> /
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SMITH             800 RESEARCH                1 FORD             3000          4
+JAMES             950 SALES                   1 BLAKE            2850          4
+ADAMS            1100 RESEARCH                1 SCOTT            3000          4
+WARD             1250 SALES                   2 BLAKE            2850          4
+MARTIN           1250 SALES                   2 BLAKE            2850          4
+MILLER           1300 ACCOUNTING              2 CLARK            2450          4
+TURNER           1500 SALES                   3 BLAKE            2850          4
+ALLEN            1600 SALES                   3 BLAKE            2850          4
+CLARK            2450 ACCOUNTING              4 KING             5000          5
+BLAKE            2850 SALES                   4 KING             5000          5
+JONES            2975 RESEARCH                4 KING             5000          5
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade 
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5* and e1.sal between s1.losal and s1.hisal and e2.sal between s2.losal and s2.hisal
+SQL> /
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SMITH             800 RESEARCH                1 FORD             3000          4
+JAMES             950 SALES                   1 BLAKE            2850          4
+ADAMS            1100 RESEARCH                1 SCOTT            3000          4
+WARD             1250 SALES                   2 BLAKE            2850          4
+MARTIN           1250 SALES                   2 BLAKE            2850          4
+MILLER           1300 ACCOUNTING              2 CLARK            2450          4
+TURNER           1500 SALES                   3 BLAKE            2850          4
+ALLEN            1600 SALES                   3 BLAKE            2850          4
+CLARK            2450 ACCOUNTING              4 KING             5000          5
+BLAKE            2850 SALES                   4 KING             5000          5
+JONES            2975 RESEARCH                4 KING             5000          5
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> select * from emp where ename='KING';
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+        10                                                                      
+                                                                                
+
+SQL> select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6  and e2.sal between s2.losal and s2.hisal;
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SMITH             800 RESEARCH                1 FORD             3000          4
+JAMES             950 SALES                   1 BLAKE            2850          4
+ADAMS            1100 RESEARCH                1 SCOTT            3000          4
+WARD             1250 SALES                   2 BLAKE            2850          4
+MARTIN           1250 SALES                   2 BLAKE            2850          4
+MILLER           1300 ACCOUNTING              2 CLARK            2450          4
+TURNER           1500 SALES                   3 BLAKE            2850          4
+ALLEN            1600 SALES                   3 BLAKE            2850          4
+CLARK            2450 ACCOUNTING              4 KING             5000          5
+BLAKE            2850 SALES                   4 KING             5000          5
+JONES            2975 RESEARCH                4 KING             5000          5
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and e2.sal between s2.losal and s2.hisal(+)
+SQL> /
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SMITH             800 RESEARCH                1 FORD             3000          4
+JAMES             950 SALES                   1 BLAKE            2850          4
+ADAMS            1100 RESEARCH                1 SCOTT            3000          4
+WARD             1250 SALES                   2 BLAKE            2850          4
+MARTIN           1250 SALES                   2 BLAKE            2850          4
+MILLER           1300 ACCOUNTING              2 CLARK            2450          4
+TURNER           1500 SALES                   3 BLAKE            2850          4
+ALLEN            1600 SALES                   3 BLAKE            2850          4
+CLARK            2450 ACCOUNTING              4 KING             5000          5
+BLAKE            2850 SALES                   4 KING             5000          5
+JONES            2975 RESEARCH                4 KING             5000          5
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and e2.sal(+) between s2.losal and s2.hisal
+SQL> /
+where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+             *
+µÚ 4 ÐÐ³öÏÖ´íÎó: 
+ORA-01417: ±í¿ÉÒÔÍâ²¿Á¬½Óµ½ÖÁ¶àÒ»¸öÆäËûµÄ±í 
+
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and nvl2(e2.sal,e2.sal between s2.losal and s2.hisal,0)
+SQL> ;
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and nvl2(e2.sal,e2.sal between s2.losal and s2.hisal,0)
+SQL> /
+and nvl2(e2.sal,e2.sal between s2.losal and s2.hisal,0)
+    *
+µÚ 6 ÐÐ³öÏÖ´íÎó: 
+ORA-00909: ²ÎÊý¸öÊýÎÞÐ§ 
+
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and nvl(e2.sal between s2.losal and s2.hisal,0)
+SQL> /
+and nvl(e2.sal between s2.losal and s2.hisal,0)
+    *
+µÚ 6 ÐÐ³öÏÖ´íÎó: 
+ORA-00909: ²ÎÊý¸öÊýÎÞÐ§ 
+
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and e2.sal between s2.losal and s2.hisal
+SQL> /
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SMITH             800 RESEARCH                1 FORD             3000          4
+JAMES             950 SALES                   1 BLAKE            2850          4
+ADAMS            1100 RESEARCH                1 SCOTT            3000          4
+WARD             1250 SALES                   2 BLAKE            2850          4
+MARTIN           1250 SALES                   2 BLAKE            2850          4
+MILLER           1300 ACCOUNTING              2 CLARK            2450          4
+TURNER           1500 SALES                   3 BLAKE            2850          4
+ALLEN            1600 SALES                   3 BLAKE            2850          4
+CLARK            2450 ACCOUNTING              4 KING             5000          5
+BLAKE            2850 SALES                   4 KING             5000          5
+JONES            2975 RESEARCH                4 KING             5000          5
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e2.*
+  2  from emp e1,emp e2
+  3* where e1.mgr = e2.empno(+)
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-4ÔÂ -81           2975            
+        20                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-4ÔÂ -81           2975            
+        20                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-6ÔÂ -81           2450            
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-4ÔÂ -87           3000            
+        20                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+        10                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+        10                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-12ÔÂ-81           3000            
+        20                                                                      
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+
+ÒÑÑ¡Ôñ14ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e2.*
+  2  from emp e1,emp e2
+  3* where e1.mgr = e2.empno
+SQL> 
+SQL> /
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-4ÔÂ -81           2975            
+        20                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-4ÔÂ -81           2975            
+        20                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7698 BLAKE      MANAGER         7839 01-5ÔÂ -81           2850            
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-6ÔÂ -81           2450            
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-4ÔÂ -87           3000            
+        20                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+        10                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+        10                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-11ÔÂ-81           5000            
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE              SAL       COMM 
+---------- ---------- --------- ---------- -------------- ---------- ---------- 
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-12ÔÂ-81           3000            
+        20                                                                      
+                                                                                
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and nvl(e2.sal,0) between s2.losal and s2.hisal
+SQL> /
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SMITH             800 RESEARCH                1 FORD             3000          4
+JAMES             950 SALES                   1 BLAKE            2850          4
+ADAMS            1100 RESEARCH                1 SCOTT            3000          4
+WARD             1250 SALES                   2 BLAKE            2850          4
+MARTIN           1250 SALES                   2 BLAKE            2850          4
+MILLER           1300 ACCOUNTING              2 CLARK            2450          4
+TURNER           1500 SALES                   3 BLAKE            2850          4
+ALLEN            1600 SALES                   3 BLAKE            2850          4
+CLARK            2450 ACCOUNTING              4 KING             5000          5
+BLAKE            2850 SALES                   4 KING             5000          5
+JONES            2975 RESEARCH                4 KING             5000          5
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> edit
+ÒÑÐ´Èë file afiedt.buf
+
+  1  select e1.ename,e1.sal,d.dname,s1.grade,
+  2  e2.ename bossname,e2.sal bosssal,s2.grade bossgrade
+  3  from emp e1,emp e2,dept d,salgrade s1,salgrade s2
+  4  where e1.mgr = e2.empno(+) and e1.deptno = d.deptno
+  5  and e1.sal between s1.losal and s1.hisal
+  6* and e2.sal between s2.losal and s2.hisal
+SQL> /
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SMITH             800 RESEARCH                1 FORD             3000          4
+JAMES             950 SALES                   1 BLAKE            2850          4
+ADAMS            1100 RESEARCH                1 SCOTT            3000          4
+WARD             1250 SALES                   2 BLAKE            2850          4
+MARTIN           1250 SALES                   2 BLAKE            2850          4
+MILLER           1300 ACCOUNTING              2 CLARK            2450          4
+TURNER           1500 SALES                   3 BLAKE            2850          4
+ALLEN            1600 SALES                   3 BLAKE            2850          4
+CLARK            2450 ACCOUNTING              4 KING             5000          5
+BLAKE            2850 SALES                   4 KING             5000          5
+JONES            2975 RESEARCH                4 KING             5000          5
+
+ENAME             SAL DNAME               GRADE BOSSNAME      BOSSSAL  BOSSGRADE
+---------- ---------- -------------- ---------- ---------- ---------- ----------
+SCOTT            3000 RESEARCH                4 JONES            2975          4
+FORD             3000 RESEARCH                4 JONES            2975          4
+
+ÒÑÑ¡Ôñ13ÐÐ¡£
+
+SQL> spool off
